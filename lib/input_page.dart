@@ -15,6 +15,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int? height;
+  int? weigth;
   // Color maleCardColor = inactiveCardColor;
   // Color femaleCardColor = inactiveCardColor;
   //
@@ -116,18 +117,30 @@ class _InputPageState extends State<InputPage> {
                         )
                       ],
                     ),
-                    Slider(
-                      value: height?.toDouble()?? 180.0,
-                      min: 120,
-                      max: 220,
-                      activeColor: Color(0xFFEB1555),
-                      inactiveColor: Color(0xFF8D8E98),
-                      onChanged: (double newValue){
-                          setState(() {
-                            height = newValue.round();
-                          });
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        inactiveTrackColor: Color(0xFF8D8E98),
+                        activeTrackColor: Colors.white,
+                        thumbColor: Color(0xFFeB1555),
+                        overlayColor: Color(0x29EB1555),
+                        thumbShape: RoundSliderThumbShape(
+                          enabledThumbRadius: 15.0
+                        ),
+                        overlayShape: RoundSliderOverlayShape(
+                          overlayRadius: 30.0
+                        )
+                      ),
+                      child: Slider(
+                        value: height?.toDouble()?? 180.0,
+                        min: 120,
+                        max: 220,
+                        onChanged: (double newValue){
+                            setState(() {
+                              height = newValue.round();
+                            });
 
-                      },
+                        },
+                      ),
                     )
                   ],
                 ),
@@ -137,7 +150,44 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   Expanded(
-                    child: ReusableCard(color: kActiveCardColor),
+                    child: ReusableCard(
+                        color: kActiveCardColor,
+                        cardChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("WEIGTH",
+                              style: kLabelTextStyle,
+                            ),
+                            Text(weigth?.toString()?? "60",
+                              style: kNumberTextStyle,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FloatingActionButton(
+                                  backgroundColor: Color(0xFF4C4F5E),
+                                  onPressed: (){},
+                                  child: Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+
+                                  ),
+                                ),
+                                SizedBox(width: 10.0),
+                                FloatingActionButton(
+                                  backgroundColor: Color(0xFF4C4F5E),
+                                  onPressed: (){},
+                                  child: Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                    ),
                   ),
                   Expanded(
                     child: ReusableCard(
