@@ -1,6 +1,5 @@
-import 'package:bmi_calculator/results_page.dart';
 import 'package:flutter/material.dart';
-import 'input_page.dart';
+import 'screens/input_page.dart';
 
 
 
@@ -13,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         primaryColor: Color(0xFF090C22),
         scaffoldBackgroundColor: Color(0xFF090C21),
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => InputPage(),
-        "/results" : (context) => ResultsPage()
+
       },
     );
   }
